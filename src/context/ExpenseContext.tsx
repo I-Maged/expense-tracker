@@ -1,53 +1,26 @@
 import { createContext, useReducer, type FC, type ReactNode } from 'react'
 import { expenseReducer } from './ExpenseReducer'
-
-const LOCAL_STORAGE_KEY = 'expense-tracker-state'
+import type {
+  ExpenseContextValue,
+  ExpenseState,
+  Transaction,
+} from '../types/types'
+import { loadInitialState } from '../services/loadInitialState'
 
 type ExpenseProviderProps = { children: ReactNode }
 
-type TransactionType = 'INCOME' | 'EXPENSE'
+const initialState: ExpenseState = loadInitialState()
 
-export type Transaction = {
-  id: string
-  type: TransactionType
-  amount: number
-  category: string
-  date: string
-  note?: string
-}
-
-export type ExpenseState = {
-  transactions: Transaction[]
-  currency: string
-  addTransaction: (transaction: Transaction) => void
-}
-
-const ExpenseContext = createContext<ExpenseState>({
-  transactions: [],
-  currency: 'USD',
-  addTransaction: () => {},
-})
-
-const initialState = (): ExpenseState => {
-  try {
-    const savedState = localStorage.getItem(LOCAL_STORAGE_KEY)
-    if (savedState) {
-      return JSON.parse(savedState) as ExpenseState
-    }
-  } catch (e) {
-    console.error('Failed to parse state from localStorage:', e)
-  }
-
-  return { transactions: [], currency: 'USD', addTransaction: () => {} }
-}
+const ExpenseContext = createContext<ExpenseContextValue | null>(null)
 
 const ExpenseProvider: FC<ExpenseProviderProps> = ({ children }) => {
   const [{ transactions, currency }, dispatch] = useReducer(
     expenseReducer,
-    initialState(),
+    initialState,
   )
 
   function addTransaction(transaction: Transaction) {
+    console.log(transaction)
     dispatch({ type: 'ADD_TRANSACTION', payload: transaction })
   }
 
@@ -59,3 +32,4 @@ const ExpenseProvider: FC<ExpenseProviderProps> = ({ children }) => {
 }
 
 export default ExpenseProvider
+export { ExpenseContext }

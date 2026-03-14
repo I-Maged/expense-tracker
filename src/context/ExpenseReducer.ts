@@ -1,4 +1,4 @@
-import type { ExpenseState, Transaction } from './ExpenseContext'
+import type { ExpenseState, Transaction } from '../types/types'
 
 export type ExpenseAction =
   | { type: 'ADD_TRANSACTION'; payload: Transaction }
