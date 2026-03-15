@@ -8,6 +8,8 @@ import {
   TypeToggle,
 } from './formContext/FormComponents'
 
+import './AddTransactionForm.css'
+
 const AddTransactionForm = () => {
   return (
     <div className='glass-panel form-container'>

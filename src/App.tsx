@@ -6,8 +6,10 @@ import ExpenseProvider from './context/ExpenseContext'
 const App = () => {
   return (
     <ExpenseProvider>
-      <Header />
-      <AddTransactionForm />
+      <div className='app-layout'>
+        <Header />
+        <AddTransactionForm />
+      </div>
     </ExpenseProvider>
   )
 }

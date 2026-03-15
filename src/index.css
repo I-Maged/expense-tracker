@@ -1,14 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Core Colors */
   --bg-primary: #0a0a0c;
   --bg-secondary: #141419;
   --bg-accent: #1e1e24;
   --text-primary: #ffffff;
   --text-secondary: #a1a1aa;
 
-  /* Semantic Colors */
   --color-income: #10b981;
   --color-income-glow: rgba(16, 185, 129, 0.2);
   --color-expense: #ef4444;
@@ -16,12 +14,10 @@
   --color-brand: #6366f1;
   --color-brand-glow: rgba(99, 102, 241, 0.4);
 
-  /* UI Elements */
   --border-color: rgba(255, 255, 255, 0.08);
   --glass-bg: rgba(20, 20, 25, 0.7);
   --glass-border: rgba(255, 255, 255, 0.05);
 
-  /* Shadows & Layout */
   --shadow-sm:
     0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
   --shadow-md:
@@ -66,7 +62,6 @@ body {
   min-height: 100vh;
 }
 
-/* Glassmorphism Utilities */
 .glass-panel {
   background: var(--glass-bg);
   backdrop-filter: blur(12px);
@@ -84,7 +79,6 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Inputs & Form Elements */
 .input-base {
   width: 100%;
   background: rgba(0, 0, 0, 0.2);
@@ -108,7 +102,6 @@ body {
   color: var(--text-secondary);
 }
 
-/* Base Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -162,7 +155,59 @@ body {
   border-color: rgba(239, 68, 68, 0.4);
 }
 
-/* Animations */
+.app-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
+.app-header {
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, white 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.app-header .subtitle {
+  color: var(--text-secondary);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.grid-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.grid-right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
@@ -208,4 +253,18 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 1024px) {
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-layout {
+    padding: 1.5rem;
+  }
+
+  .app-header h1 {
+    font-size: 2.5rem;
+  }
 }
