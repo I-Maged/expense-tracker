@@ -1,11 +1,4 @@
-import type { ExpenseState, Transaction } from '../types/types'
-
-export type ExpenseAction =
-  | { type: 'ADD_TRANSACTION'; payload: Transaction }
-  | { type: 'EDIT_TRANSACTION'; payload: Transaction }
-  | { type: 'DELETE_TRANSACTION'; payload: string }
-  | { type: 'SET_CURRENCY'; payload: string }
-  | { type: 'INITIALIZE_STATE'; payload: ExpenseState }
+import type { ExpenseAction, ExpenseState } from '../types/types'
 
 export const expenseReducer = (
   state: ExpenseState,
@@ -34,6 +27,12 @@ export const expenseReducer = (
 
     case 'INITIALIZE_STATE':
       return action.payload
+
+    case 'SET_FILTER':
+      return {
+        ...state,
+        filterSettings: { ...state.filterSettings, ...action.payload },
+      }
 
     default:
       return state

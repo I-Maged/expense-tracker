@@ -1,9 +1,9 @@
-import { useMemo } from 'react'
+import { useMemo, type FC } from 'react'
 import { Wallet, TrendingUp, TrendingDown } from 'lucide-react'
 import './BalanceSummary.css'
 import { useExpenseContext } from '../context/useExpenseContext'
 
-const BalanceSummary: React.FC = () => {
+const BalanceSummary: FC = () => {
   const { transactions, currency } = useExpenseContext()
 
   const { income, expense, balance } = useMemo(() => {

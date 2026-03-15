@@ -53,7 +53,8 @@ const generateMockData = (): ExpenseState => {
         note: 'Web design work',
       },
     ],
-    currency: 'USD',
+    filterSettings: { category: 'ALL', startDate: null, endDate: null },
+    currency: '$',
   }
 }
 

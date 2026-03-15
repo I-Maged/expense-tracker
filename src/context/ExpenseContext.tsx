@@ -3,6 +3,7 @@ import { expenseReducer } from './ExpenseReducer'
 import type {
   ExpenseContextValue,
   ExpenseState,
+  FilterSettings,
   Transaction,
 } from '../types/types'
 import { loadInitialState } from '../services/loadInitialState'
@@ -14,18 +15,29 @@ const initialState: ExpenseState = loadInitialState()
 const ExpenseContext = createContext<ExpenseContextValue | null>(null)
 
 const ExpenseProvider: FC<ExpenseProviderProps> = ({ children }) => {
-  const [{ transactions, currency }, dispatch] = useReducer(
+  const [{ transactions, filterSettings, currency }, dispatch] = useReducer(
     expenseReducer,
     initialState,
   )
 
   function addTransaction(transaction: Transaction) {
-    console.log(transaction)
     dispatch({ type: 'ADD_TRANSACTION', payload: transaction })
   }
 
+  function setFilters(filter: Partial<FilterSettings>) {
+    dispatch({ type: 'SET_FILTER', payload: filter })
+  }
+
   return (
-    <ExpenseContext.Provider value={{ transactions, currency, addTransaction }}>
+    <ExpenseContext.Provider
+      value={{
+        transactions,
+        filterSettings,
+        currency,
+        addTransaction,
+        setFilters,
+      }}
+    >
       {children}
     </ExpenseContext.Provider>
   )
