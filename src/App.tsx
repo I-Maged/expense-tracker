@@ -1,14 +1,11 @@
-import Header from './components/Header'
-import AddTransactionForm from './components/AddTransactionForm'
-
 import ExpenseProvider from './context/ExpenseContext'
+import Homepage from './pages/Homepage'
 
 const App = () => {
   return (
     <ExpenseProvider>
       <div className='app-layout'>
-        <Header />
-        <AddTransactionForm />
+        <Homepage />
       </div>
     </ExpenseProvider>
   )
